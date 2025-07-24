@@ -12,6 +12,8 @@ def make_decode_forwarder(
     providers = ["CPUExecutionProvider"]
     if device == "cuda":
         providers.insert(0, "CUDAExecutionProvider")
+    elif device == "dml":
+        providers.insert(0, "DmlExecutionProvider")
     elif device == "wgpu":
         providers.insert(0, "WebGpuExecutionProvider")
     spectrogram_session = onnxruntime.InferenceSession(

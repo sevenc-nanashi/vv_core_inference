@@ -10,6 +10,8 @@ def make_yukarin_sa_forwarder(yukarin_sa_model_dir: Path, device, convert=False)
     providers = ["CPUExecutionProvider"]
     if device == "cuda":
         providers.insert(0, "CUDAExecutionProvider")
+    elif device == "dml":
+        providers.insert(0, "DmlExecutionProvider")
     elif device == "wgpu":
         providers.insert(0, "WebGpuExecutionProvider")
     session = onnxruntime.InferenceSession(

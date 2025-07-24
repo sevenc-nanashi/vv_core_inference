@@ -24,7 +24,7 @@ def run(
     np.random.seed(0)
     device = "cpu"
     if use_gpu:
-        device = "cuda"
+        device = "dml"
     if use_wgpu:
         device = "wgpu"
     if method == "torch":
@@ -42,14 +42,14 @@ def run(
             make_yukarin_sa_forwarder,
         )
 
-        if use_gpu:
-            assert onnxruntime.get_device() == "GPU", (
-                "Install onnxruntime-gpu if you want to use GPU."
-            )
-        if use_wgpu:
-            assert onnxruntime.get_device() == "CPU-WEBGPU", (
-                "Build onnxruntime with --use_webgpu if you want to use WebGPU."
-            )
+        # if use_gpu:
+        #     assert onnxruntime.get_device() == "GPU", (
+        #         "Install onnxruntime-gpu if you want to use GPU."
+        #     )
+        # if use_wgpu:
+        #     assert onnxruntime.get_device() == "CPU-WEBGPU", (
+        #         "Build onnxruntime with --use_webgpu if you want to use WebGPU."
+        #     )
 
     # yukarin_s
     yukarin_s_forwarder = make_yukarin_s_forwarder(

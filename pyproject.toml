@@ -4,20 +4,20 @@ version = "0.1.0"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "hifi-gan",
-    "numpy<1.26.4",
-    "old-yukarin-sosoa",
-    "onnx==1.14.0",
-    # "onnxruntime==1.15.1",
-    "onnxruntime",
-    "pyopenjtalk",
-    "pyyaml==6.0.2",
-    "ruff>=0.11.2",
-    "soundfile==0.12.1",
-    "torch==2.4.1",
-    "yukarin-s",
-    "yukarin-sa",
-    "yukarin-sosoa",
+  "hifi-gan",
+  "numpy<1.26.4",
+  "old-yukarin-sosoa",
+  "onnx==1.14.0",
+  # "onnxruntime==1.15.1",
+  "onnxruntime-directml",
+  "pyopenjtalk",
+  "pyyaml==6.0.2",
+  "ruff>=0.11.2",
+  "soundfile==0.12.1",
+  "torch==2.4.1",
+  "yukarin-s",
+  "yukarin-sa",
+  "yukarin-sosoa",
 ]
 
 [tool.uv.sources]
@@ -32,4 +32,4 @@ old-yukarin-sosoa = { git = "https://github.com/Hiroshiba/old_yukarin_sosoa", re
 # - dxil.dllとdxcompiler.dllを.venv/Lib/site-packages/onnxruntime/capiにコピーしないと動かないので注意
 #   ref: https://github.com/microsoft/onnxruntime/issues/25495
 #   プルリクはすでに出ているので、おそらくリリース時には治っているはず：https://github.com/microsoft/onnxruntime/pull/25500
-# onnxruntime = { path = "E:/onnxruntime/build/Windows/Release/Release/dist/onnxruntime-1.23.0-cp311-cp311-win_amd64.whl" }
+onnxruntime-directml = { path = "E:/onnxruntime/build/Windows/Release/Release/dist/onnxruntime_directml-1.23.0-cp311-cp311-win_amd64.whl" }
