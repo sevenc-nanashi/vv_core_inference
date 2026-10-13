@@ -1,4 +1,5 @@
 import argparse
+import os
 import time
 from itertools import product
 import numpy as np
@@ -17,6 +18,7 @@ def run(
     hifigan_model_dir: Path,
     use_gpu: bool,
     use_wgpu: bool,
+    use_coreml: bool,
     texts: List[str],
     speaker_ids: List[int],
     method: str,
@@ -27,6 +29,8 @@ def run(
         device = "cuda"
     if use_wgpu:
         device = "wgpu"
+    if use_coreml:
+        device = "coreml"
     if method == "torch":
         from vv_core_inference.make_decode_forwarder import make_decode_forwarder
         from vv_core_inference.make_yukarin_s_forwarder import make_yukarin_s_forwarder
@@ -46,10 +50,10 @@ def run(
             assert onnxruntime.get_device() == "GPU", (
                 "Install onnxruntime-gpu if you want to use GPU."
             )
-        if use_wgpu:
-            assert onnxruntime.get_device() == "CPU-WEBGPU", (
-                "Build onnxruntime with --use_webgpu if you want to use WebGPU."
-            )
+        # if use_wgpu:
+        #     assert onnxruntime.get_device() == "CPU-WEBGPU", (
+        #         "Build onnxruntime with --use_webgpu if you want to use WebGPU."
+        #     )
 
     # yukarin_s
     yukarin_s_forwarder = make_yukarin_s_forwarder(
@@ -110,6 +114,7 @@ if __name__ == "__main__":
     parser.add_argument("--hifigan_model_dir", type=Path, default=Path("model/hifigan"))
     parser.add_argument("--use_gpu", action="store_true")
     parser.add_argument("--use_wgpu", action="store_true")
+    parser.add_argument("--use_coreml", action="store_true")
     parser.add_argument("--texts", nargs="+", default=["こんにちは、どうでしょう"])
     parser.add_argument("--speaker_ids", nargs="+", type=int, default=[5, 9])
     parser.add_argument("--method", choices=["torch", "onnx"], default="torch")

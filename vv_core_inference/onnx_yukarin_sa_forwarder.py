@@ -12,6 +12,8 @@ def make_yukarin_sa_forwarder(yukarin_sa_model_dir: Path, device, convert=False)
         providers.insert(0, "CUDAExecutionProvider")
     elif device == "wgpu":
         providers.insert(0, "WebGpuExecutionProvider")
+    elif device == "coreml":
+        providers.insert(0, "CoreMLExecutionProvider")
     session = onnxruntime.InferenceSession(
         str(yukarin_sa_model_dir.joinpath("intonation.onnx")), providers=providers
     )

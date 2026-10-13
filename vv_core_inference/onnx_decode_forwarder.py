@@ -14,6 +14,8 @@ def make_decode_forwarder(
         providers.insert(0, "CUDAExecutionProvider")
     elif device == "wgpu":
         providers.insert(0, "WebGpuExecutionProvider")
+    elif device == "coreml":
+        providers.insert(0, "CoreMLExecutionProvider")
     spectrogram_session = onnxruntime.InferenceSession(
         str(yukarin_sosoa_model_dir.joinpath("spectrogram.onnx")), providers=providers
     )
